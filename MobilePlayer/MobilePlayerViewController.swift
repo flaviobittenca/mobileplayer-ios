@@ -176,11 +176,12 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
         guard let slf = self else {
           return
         }
-        if let navigationController = slf.navigationController {
-          navigationController.popViewControllerAnimated(true)
-        } else if let presentingController = slf.presentingViewController {
-          presentingController.dismissMoviePlayerViewControllerAnimated()
-        }
+//        if let navigationController = slf.navigationController {
+//          navigationController.popViewControllerAnimated(true)
+//        } else if let presentingController = slf.presentingViewController {
+//          presentingController.dismissMoviePlayerViewControllerAnimated()
+//        }
+        slf.dismissViewControllerAnimated(true, completion: nil)
       },
       forControlEvents: .TouchUpInside)
 
@@ -284,6 +285,14 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     // Restore status bar appearance.
     UIApplication.sharedApplication().statusBarHidden = previousStatusBarHiddenValue
     setNeedsStatusBarAppearanceUpdate()
+  }
+    
+  public override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+    return UIInterfaceOrientation.LandscapeLeft
+  }
+    
+  public override func shouldAutorotate() -> Bool {
+    return false
   }
 
   // MARK: Deinitialization
